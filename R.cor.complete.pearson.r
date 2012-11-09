@@ -9,5 +9,5 @@ for (f in files) {
     results <- cor(data, use="complete.obs", method="pearson")
     cat(paste(f, results[2], sep=","), file="coefficients.csv", sep="\n", append=TRUE)
     p <- ggplot(data, aes(indicatorValue, CPIRank))
-    ggsave(p + geom_point(), file=paste("charts/", f, ".jpg", sep=""), scale=0.5)
+    ggsave(p + geom_point() + stat_smooth(), file=paste("charts/", f, ".jpg", sep=""), scale=0.75)
 }
