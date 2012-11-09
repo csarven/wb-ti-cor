@@ -9212,7 +9212,7 @@
       </table>
       <h2 id="methodology">Methodology</h2>
       <ul>
-         <li>Access to World Bank Linked Data and Transparency International Linked Data primarily to run SPARQL queries over both datasets.</li>
+         <li>Access to <a href="http://worldbank.270a.info/">World Bank Linked Data</a> and <a href="http://transparency.270a.info/">Transparency International Linked Data</a> primarily to run SPARQL queries over both datasets.</li>
          <li>Collected a list of World Bank development indicators (little over 1000) and saved them in a plain text file (one indicator per line).</li>
          <li>Using a Bash script, for each indicator and year (2010), queried the SPARQL endpoint with Apache Jena's command line tool <code>tdbquery</code>.</li>
          <li id="data-retrieval">Retrieved data via SPARQL query from endpoint <a href="http://transparency.270a.info/sparql">http://transparency.270a.info/sparql</a>, and saved the CSV outputs per indicator. The query matches observations from the Transparency International's Corruption Perceptions Index dataset and the observations from the World Bank indicators such that they both contain the same year and country. For those matches, indicator values are taken from the World Bank observations, and the rankings from the Transparency International CPIs. The query is as follows:
