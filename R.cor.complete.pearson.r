@@ -1,4 +1,3 @@
-#!/usr/bin/R
 #Author: Sarven Capadisli <info@csarven.ca>
 #Author URL: http://csarven.ca/#i
 
