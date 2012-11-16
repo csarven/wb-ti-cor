@@ -11070,14 +11070,17 @@ WHERE {
             sdmx-dimension:refArea ?countryURI ;
         .
         ?countryURI owl:sameAs ?wbCountry .
-        FILTER (regex(str(?wbCountry), \"^http://worldbank.270a.info/\"))
+        FILTER (regex(str(?wbCountry), "^http://worldbank.270a.info/"))
     }
     SERVICE &lt;http://worldbank.270a.info/sparql&gt; {
-        GRAPH &lt;http://worldbank.270a.info/graph/world-development-indicators&gt; {
-            ?wbObservationURI wbp:indicator wbindicator:$i ;
-            sdmx-dimension:refPeriod year:$year ;
-            sdmx-dimension:refArea ?wbCountry ;
-            sdmx-measure:obsValue ?indicatorValue
+        SELECT ?wbCountry ?indicatorValue
+        WHERE {
+            GRAPH &lt;http://worldbank.270a.info/graph/world-development-indicators&gt; {
+                ?wbObservationURI wbp:indicator wbindicator:$i ;
+                sdmx-dimension:refPeriod year:$year ;
+                sdmx-dimension:refArea ?wbCountry ;
+                sdmx-measure:obsValue ?indicatorValue
+            }
         }
     }
     ?observationURI property:rank ?CPIRank .
