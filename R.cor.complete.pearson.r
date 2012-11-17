@@ -1,6 +1,8 @@
 #Author: Sarven Capadisli <info@csarven.ca>
 #Author URL: http://csarven.ca/#i
 
+#TODO: Add SVG hover for points to indicate country
+
 args <- commandArgs(TRUE)
 argv <- length(args)
 #if (is.null(argv) | length(argv)<1) {
@@ -16,11 +18,12 @@ files <- dir("data/", "*.csv")
 for (f in files) {
     data <- read.csv(paste("data/", f, sep=""), header=T)
     results <- cor(data, use="complete.obs", method="pearson")
-    cat(paste(f, results[2], sep=","), file="coefficients.csv", sep="\n", append=TRUE)
+    cat(paste(f, results[2], sep=","), file="coefficients.2010.csv", sep="\n", append=TRUE)
 
     n <- substr(f, 0, nchar(f, type="chars")-9)
 
-    title <- paste(indicators[indicators$notation == n,2], "2010", sep=", ")
+    xlabel <- indicators[indicators$notation == n, 2]
+    ylabel <- "CPI Score"
 
-    ggsave(ggplot(data, aes(indicatorValue, CPIRank)) + geom_point() + stat_smooth() + ggtitle(title), file=paste("charts/", f, ".svg", sep=""))
+    ggsave(ggplot(data, aes(indicatorValue, CPIScore)) + xlab(xlabel) + ylab(ylabel) + geom_point(shape=19, alpha=3/4) + stat_smooth() + ggtitle("2010 correlations"), file=paste("charts/", substr(f, 0, nchar(f, type="chars")-4), ".svg", sep=""))
 }
