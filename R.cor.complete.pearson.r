@@ -19,7 +19,7 @@ for (f in files) {
     data <- read.csv(paste("data/", f, sep=""), header=T)
     results <- cor(data$indicatorValue, data$CPIScore, use="complete.obs", method="pearson")
 
-    cat(paste(f, results[2], sep=","), file="coefficients.2010.csv", sep="\n", append=TRUE)
+    cat(paste(results[1], f, sep=","), file="coefficients.2010.csv", sep="\n", append=TRUE)
 
     n <- substr(f, 0, nchar(f, type="chars")-9)
 
@@ -28,3 +28,4 @@ for (f in files) {
 
     ggsave(ggplot(data, aes(indicatorValue, CPIScore)) + xlab(xlabel) + ylab(ylabel) + geom_point(shape=19, alpha=3/4) + stat_smooth() + ggtitle("2010 correlations"), file=paste("charts/", substr(f, 0, nchar(f, type="chars")-4), ".svg", sep=""))
 }
+warnings()
