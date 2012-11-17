@@ -17,7 +17,8 @@ indicators <- read.csv("indicators-notations-prefLabels.csv", header=T)
 files <- dir("data/", "*.csv")
 for (f in files) {
     data <- read.csv(paste("data/", f, sep=""), header=T)
-    results <- cor(data, use="complete.obs", method="pearson")
+    results <- cor(data$indicatorValue, data$CPIScore, use="complete.obs", method="pearson")
+
     cat(paste(f, results[2], sep=","), file="coefficients.2010.csv", sep="\n", append=TRUE)
 
     n <- substr(f, 0, nchar(f, type="chars")-9)
