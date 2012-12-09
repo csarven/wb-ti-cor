@@ -88,7 +88,7 @@ WHERE {
         FILTER (regex(str(?wbCountry), "^http://worldbank.270a.info/"))
     }
     SERVICE &lt;http://worldbank.270a.info/sparql&gt; {
-        SELECT ?wbCountry ?indicatorValue
+        SELECT ?countryCode ?wbCountry ?indicatorValue
         WHERE {
             GRAPH &lt;http://worldbank.270a.info/graph/world-development-indicators&gt; {
                 ?wbObservationURI wbp:indicator wbindicator:$i ;
